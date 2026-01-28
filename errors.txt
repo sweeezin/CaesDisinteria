@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/gameUI.rpy", line 36: Line is indented, but the preceding add statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    null height 20
-    ^
+File "game/gameUI.rpy", line 53: vbox expects a non-empty block.
+    vbox:
+         ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Tue Jan 27 20:11:42 2026
+Wed Jan 28 12:10:43 2026

@@ -8,57 +8,162 @@ screen left_box:
             ysize 990
             xpos 45
             ypos 45
+            padding (20,20)
 
-            padding(20,20)
-
-            vbox:
-                spacing 8
+            fixed:
                 xfill True
-                yalign 0.0
+                yfill True
 
-                hbox:
-                    xfill True
-
-                    # Day / Time (left)
-                    vbox:
-                        spacing 4
-                        xalign 0.0
-
-                        text "Day: [game_day]" size 24
-                        text "Time: [game_time]" size 24
-
-                    # Money (right)
-                    text "$[pc_money:.2f]" size 24 xalign 1.0
-
-                null height 20
-            
-                add RadarChart(size=280) xalign 0.5
-                null height 20
-
+                # =============================
+                # TOP CONTENT
+                # =============================
                 vbox:
                     spacing 8
                     xfill True
+                    yalign 0.0
 
-                    use stat_bar("Pain", pc_pain)
-                    use stat_bar("Stress", pc_stress)
-                    use stat_bar("Fatigue", pc_fatigue)
-                    use stat_bar("Vitality", pc_vitality)
-            
-                $ tooltip = GetTooltip()
+                    hbox:
+                        xfill True
 
-                if tooltip:
+                        # Day / Time (left)
+                        vbox:
+                            spacing 4
+                            xalign 0.0
+                            text "Day: [game_day]" size 27
+                            text "Time: [game_time]" size 27
+
+                        # Money (right)
+                        text "$[pc_money:.2f]" size 27 xalign 1.0
+
+                    null height 20
+                    
+                    add RadarChart(size=260) xalign 0.5
+
+                    null height 20
+
+                    use heartbeat_placeholder()
+                    null height 15
+
+                    vbox:
+                        spacing 8
+                        xfill True
+                        
+                        use stat_bar("Pain", pc_pain)
+                        use stat_bar("Stress", pc_stress)
+                        use stat_bar("Fatigue", pc_fatigue)
+                        use stat_bar("Vitality", pc_vitality)
+
+                vbox:
+                    yalign 1.0
+                    spacing 6
+                    xfill True
+
+                    # Journal / Stats row
+                    hbox:
+                        spacing 6
+                        xfill True
+
+                        frame:
+                            xsize 160
+                            padding (6,4)
+
+                            textbutton "Journal":
+                                background None
+                                xalign 0.5
+                                action Show("journal_screen")
+
+                        frame:
+                            xsize 160
+                            padding (6,4)
+
+                            textbutton "Stats":
+                                background None
+                                xalign 0.5
+                                action Show("stats_screen")
+
+                    # Saves (full width)
                     frame:
-                        xpos 0
-                        ypos 900
+                        xfill True
                         padding (6,4)
-                        background Solid("#000")
 
-                        text tooltip size 14 outlines [(2,"#000",0,0)]
+                        textbutton "Saves":
+                            background None
+                            xalign 0.5
+                            action ShowMenu("save")
+
+                    # Options (full width)
+                    frame:
+                        xfill True
+                        padding (6,4)
+
+                        textbutton "Options":
+                            background None
+                            xalign 0.5
+                            action ShowMenu("preferences")
+
+
+
+
+screen journal_screen():
+
+    modal True
+
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xsize 800
+        ysize 600
+        padding (20,20)
+
+        vbox:
+            spacing 20
+
+            text "Journal" size 23 xalign 0.5
+
+            text "Journal content placeholder."
+
+            textbutton "Close":
+                xalign 0.5
+                action Hide("journal_screen")
+
+screen stats_screen():
+
+    modal True
+
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xsize 800
+        ysize 600
+        padding (20,20)
+
+        vbox:
+            spacing 20
+
+            text "Stats" size 23 xalign 0.5
+
+            text "Stats screen placeholder."
+
+            textbutton "Close":
+                xalign 0.5
+                action Hide("stats_screen")
 
 
  
 
-            
+screen heartbeat_placeholder():
+    frame:
+        xalign 0.5
+        xsize 300
+        ysize 60
+        padding (4,4)
+
+        frame:
+            xfill True
+            yfill True
+
+            text "heart rate gif" xalign 0.5 yalign 0.5 size 23
+
 
 
 #right bar 
