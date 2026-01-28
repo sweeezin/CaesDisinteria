@@ -9,6 +9,57 @@ screen left_box:
             xpos 45
             ypos 45
 
+            padding(20,20)
+
+            vbox:
+                spacing 8
+                xfill True
+                yalign 0.0
+
+                hbox:
+                    xfill True
+
+                    # Day / Time (left)
+                    vbox:
+                        spacing 4
+                        xalign 0.0
+
+                        text "Day: [game_day]" size 24
+                        text "Time: [game_time]" size 24
+
+                    # Money (right)
+                    text "$[pc_money:.2f]" size 24 xalign 1.0
+
+                null height 20
+            
+                add RadarChart(size=280) xalign 0.5
+                null height 20
+
+                vbox:
+                    spacing 8
+                    xfill True
+
+                    use stat_bar("Pain", pc_pain)
+                    use stat_bar("Stress", pc_stress)
+                    use stat_bar("Fatigue", pc_fatigue)
+                    use stat_bar("Vitality", pc_vitality)
+            
+                $ tooltip = GetTooltip()
+
+                if tooltip:
+                    frame:
+                        xpos 0
+                        ypos 900
+                        padding (6,4)
+                        background Solid("#000")
+
+                        text tooltip size 14 outlines [(2,"#000",0,0)]
+
+
+ 
+
+            
+
 
 #right bar 
 screen right_bar: 
@@ -42,7 +93,6 @@ screen dialogue_box():
         ysize 475
         xpadding 20
         ypadding 20
-        background "#111"
 
         xpos 960
         xanchor 0.5
